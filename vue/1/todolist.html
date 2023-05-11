@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+   <div id="root"></div>
+</body>
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                list:['hello','world','good','nice'],
+                value:'',
+                add:'增加'
+            }
+        },
+        methods:{
+            handleBtnAdd(){
+                this.list.push(this.value);
+                this.value = ''
+            },
+            handleBtnDelete(idx){
+                // JS 数组常用操作
+                this.list.splice(idx,1);
+            },
+        },
+        template:`
+            <div>
+                <input v-model="value">
+                <button v-on:click="handleBtnAdd" :title="add">增加</button>
+                <ul>
+                    <li v-for="(item,idx) in list" :key="idx">{{ item }} 
+                        <button v-on:click="handleBtnDelete(idx)">完成</button>
+                    </li> 
+                    
+                </ul>
+            </div> 
+        `
+
+        // v-model  input 输入的内容会和data 中的变量绑定
+        //  {{ }} 插值表达式
+        // :title ===  v-bind:title
+    }).mount('#root') 
+</script>
+</html>

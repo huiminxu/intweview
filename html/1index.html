@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div>Hello</div>
+    <H2> Title</H2>
+    
+    <p>我是段落</p>
+    <h5 class="button"> link style</h5>
+    <!-- tab     -->
+<!--  square｜ circle ｜ disc -->
+    <ul>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            3
+        </li>
+        <li>
+            4
+        </li>
+    </ul>
+    <div class="button">btn1</div>
+    <div class="button">btn2</div>
+    <div class="button btn3 btn4">btn3</div>
+    <button>我是按钮</button>
+    
+    <input type="text">
+    <input type="password">
+    <input type="email">
+    <input type="file">
+    <label>
+        <input type="file">
+    </label>
+
+
+    <a href="https://baidu.com" target="_blank">我是连接</a>
+    <img src="./WeChatWorkScreenshot_fcd2e385-0ac8-4894-b1d4-35dd78921983.png" alt="默认图片">
+
+    <div id="template">
+        我叫{{ name }}，我今年 {{ age }} 岁
+    </div>
+
+    <div id="cs">
+        改变样式
+    </div>
+
+</body>
+<style type="text/css">
+</style>
+
+<script>
+   var a =  document.getElementById("template");
+   var content = {
+    name:'test',
+    age: 18
+   }
+//    我叫{{ name}}，我今年 {{ age }} 岁
+//  content[name] = 'test'
+//  content[name ] = ? 
+// 我叫test，我今年 18 岁
+   const b = a.innerHTML.replace(/\{\{(.*?)\}\}/g,(match,key)=> content[key.trim()] );
+   a.innerHTML = b;
+
+   var cs =  document.getElementById("cs");
+   cs.style.backgroundColor= "black";
+   cs.style.color= "red";
+</script>
+</html>

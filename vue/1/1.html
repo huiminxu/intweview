@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    Vue.createApp({
+        data(){
+            return {
+               count:1,
+               content:'hello world',
+               title:'考试科目',
+               show:true,
+               array:['数学','语文','英语','物理','化学'],
+            } 
+        },
+        // 生命周期函数
+        mounted(){
+            // setInterval(()=>{
+            //     this.count += 1
+            // },1000)
+        },
+        methods:{
+            handleBtnClick(){
+                //  js 操作 （基础数据类型） 数组常用方法
+                console.log('handleBtnClick','cliked')
+                // ['h',e,l,l,o, ,w,o,r,l,d]
+                // [] ff
+                this.content = this.content.split('').reverse().join('')
+            },
+            handleToggleTitle(){
+                this.show = !this.show;
+                this.array.push('中文')
+            }
+        },
+        // template:'<div>{{count}}</div>'
+        template:`
+        <div>
+            {{count}}
+            {{ content }}
+            <button @click="handleBtnClick">反转</button>
+            <div v-if="show"> {{title}} </div>
+            <div v-else>  </div>
+            <ol>
+                <li v-for="item in array" :key="item"> {{item}} </li>
+            </ol>
+            <button @click="handleToggleTitle">显示/隐藏标题</button>
+        `
+        // v-for vue 指令
+        //  @click  ===  v-on:click
+    }).mount('#root')
+    
+</script>
+</html>

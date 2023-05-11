@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+</head>
+<body>
+    <div> Flex是Flexible Box的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。 </div>
+    <div class="box">
+        <div class="block">
+            Block1
+            On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds i
+        </div>
+        <div class="block dashed">
+            Block2
+            On the other hand, we denounce
+        </div>
+        <div class="block block3">
+            Block3
+     by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds i
+        </div>
+    </div>
+
+    <style>
+
+        /* inline-block */
+        .block{
+            /* padding: 20px;
+            border: 1px solid salmon;
+            margin: 20px 20px; */
+            /* flex: 1; */
+            /* display: inline-block;
+            width: 200px; */
+        }
+        
+
+        /* FLex */
+
+        .box{
+            /*  align-items: stretch  默认属性 */
+            display: flex;
+            align-items: center;
+            /* justify-content: flex-start; */
+            /* align-items: flex-start; */
+            /* align-items: flex-end; */
+            /* align-items: stretch;  */
+
+            }
+        .block{
+            /* padding: 20px;
+            border: 1px solid salmon;
+            margin: 20px 20px; */
+            flex: 1;
+        }
+        .dashed{
+            border-style: dashed;
+        }
+        .block3{
+            align-self: flex-start;
+        }
+    </style>
+</body>
+</html>

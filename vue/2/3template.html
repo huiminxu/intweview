@@ -1,0 +1,88 @@
+<!-- 2-4 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <div v-html="message" /> -->
+  
+        <div class="msg" :title="message">我是 message</div>
+        <input :disabled="disabled" type="text">
+      <!-- v-once -->
+      <div v-once>{{message}}</div>
+       
+      <div v-if="show">123</div>
+
+      <!-- 属性动态 -->
+      <div :[name]="txt" @[event]="handleEvent">动态组件</div>
+
+      <!-- form -->
+      <form action="https://www.baidu.com" @click.prevent="handleFormClick">
+        <button type="submit">提交</button>
+      </form>
+
+      <div class="computed">
+        {{ total }} {{ getTotal() }}
+      </div>
+
+    </div>
+</body>
+<script>
+    // computed 和 methods 区别： 当计算属性依赖的内容发生变更时，才会重新执行计算, methods:  只要页面重新渲染，就会重新计算
+    //  computed 和 methods 都能实现的，建议使用 computed 因为有缓存
+    //  watch 和 computed  都能使用的，建议使用 computed 因为更简洁
+    const app = Vue.createApp({
+        data() {
+            return {
+                disabled:true,
+                message: '<strong>Hello World</strong>',
+                show: true,
+                name:'title1',
+                txt:'text ',
+                event:'click',
+                count:2,
+                price:5,
+                newTotal:10,
+            } 
+        },
+        computed:{
+            // 属性
+            total(){
+                return this.count * this.price;
+                // return new Date();
+            }
+        },
+        watch: {
+            price(newValue, oldValue) {
+                // console.log()
+                // setTimeout(()=>{
+                //     console.log('price changed')
+                // },3000)
+                this.newTotal = newValue * this.count;
+            },
+        },
+        methods: {
+            // 不要箭头函数使用 
+            handleEvent() {
+                    console.log('handleEvent')
+            },
+            handleFormClick(e){
+                // e.preventDefault();
+            },
+            getTotal(){
+                return this.count * this.price;
+                // return new Date();
+            }
+        },
+        // template:'<div>{{ message }}</div>' 
+    });
+    const vm = app.mount('#root')
+
+</script> 
+</html>

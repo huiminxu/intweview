@@ -1,0 +1,25 @@
+div{
+
+}
+.button{
+    background-color:yellow;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px;
+    display: inline-block;
+}
+.btn3{
+    font-size: 20px;
+    padding: 20px;
+}
+.btn4{
+    border: 1px solid red;
+}
+label{
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 1px dashed #ccc;
+  background: linear-gradient(#ccc,#ccc) center/40px 4px no-repeat,linear-gradient(#ccc,#ccc) center/4px 40px no-repeat;
+}

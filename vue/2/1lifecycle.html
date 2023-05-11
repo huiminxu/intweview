@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="root">
+    </div>
+</body>
+<script>
+    // 生命周期函数：在某一时刻会自动执行的函数
+    //  beforeCreate 拿不到 data 数据
+    //  beforeCreate created beforeMount 拿不到 DOM
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'Hello World'
+            }
+        },
+        // 初始化events 和 lifecyle 后执行的函数
+        //  在实例生成之前会自动执行的函数
+        beforeCreate(){
+            // 拿不到
+            console.log(document.getElementById('root'))
+            console.log('beforeCreate',this.message) // 拿不到
+        },
+        //  初始化 injections 和 reactivity 
+        //  在实例生成之后会自动执行的函数
+        created(){
+            // 拿不到
+            console.log(document.getElementById('root'),'created',this.message)
+        },
+        //   template？  render  / el's innerHTML
+        // 在模版已经被编成函数后立即执行的函数
+        // 在组件内容被渲染到页面之前立即执行的函数
+        beforeMount(){
+            console.log(document.getElementById('root').innerHTML,'beforeMount',this.message)
+        },
+        // 在组件内容被渲染后页面之后立即执行的函数
+        mounted(){  
+            // <div>Hello World</div>
+            console.log(document.getElementById('root').innerHTML,'mouted',this.message)
+            // hello world
+        },
+        //  在组件内容被渲染到页面之后自动执行的函数
+        //  当数据发生变化时会立即执行的函数
+        beforeUpdate(){
+            console.log(document.getElementById('root').innerHTML,'beforeUpdate')
+        },
+        // 当数据变化后，页面重新渲染后会自动执行的函数
+        updated(){
+            console.log(document.getElementById('root').innerHTML,'updated') 
+        },
+        //  当 Vue 失效时，自动执行的函数
+        beforeUnmount(){
+            console.log(document.getElementById('root').innerHTML,'beforeUnmount') 
+        },
+        // 当 Vue 失效时，且 dom 完全销毁之后，自动执行的函数
+        unmounted(){
+            //  undefined
+            console.log(document.getElementById('root').innerHTML,'unmounted') 
+        },
+        template:'<div>{{ message }}</div>'
+    });
+    //  这个 vm 代表的就是 vue 的根组件
+    const vm = app.mount('#root')
+
+    // 获取数据
+    // vm.$data.message = 'jisuanji'
+
+
+</script> 
+</html>
