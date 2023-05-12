@@ -17,13 +17,16 @@ console.log(_.concat([1,2],3))
 const http= require('http');
 const server = http.createServer((req,res)=>{
     res.writeHead(200,{'content-type':'text/html'})
-    res.end('<h1>hello world</h1>')   
+    res.end('<h1>hello world</h1>') 
 })
 
 
 server.listen(3000,()=>{
     console.log('listening on 3000 port')
 })
+
+
+// 目标 -需求- 设计 -技术方案 -开发 - 调试 - 部署
  
 //服务端要考虑的问题
 
