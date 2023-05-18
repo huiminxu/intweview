@@ -1,8 +1,23 @@
+const { SuccessModel,ErrorModel } = require('../model/resModel');
+const loginCheck  = require('../controller/user')
 const handleUserRouter = (req,res) =>{
     const method = req.method;
     const url = req.url;
     const path = url.split('?')[0];
 
+    //登录用户
+    if(method ==='POST' && path==='/api/user/login'){
+        console.log('userrouter',req.body);
+         const { username,password} = req.body;
+         const res = loginCheck(username,password);
+         if(res){
+             return new SuccessModel();
+         }else{
+
+            return new ErrorModel('错误');
+         }
+
+    }
     // 获取用户列表接口
     if(method==='GET' && path==='/api/user/list'){
         return {

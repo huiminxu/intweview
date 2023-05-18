@@ -14,7 +14,16 @@ const getList = (author,keyword) =>{
         author:'李四'
     }]
 }
+
+const newBlog =(blogData={})=>{
+   return {
+    id:3,
+
+   }
+}
 module.exports ={
-    getList
+    getList,
+    newBlog
     // getBlogDetail
 }
+
