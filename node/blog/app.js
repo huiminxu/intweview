@@ -15,6 +15,8 @@ const getPostData =(req,res)=>{
                     resolve(JSON.parse(postData))
                 }
             })
+        }else{
+            resolve({})
         }
     });
     return promise
@@ -30,20 +32,29 @@ const serverHandle = (req,res)=>{
 
     //处理 postData
     getPostData(req).then(postData=>{
+        console.log('getPostData',postData)
         req.body = postData;
         // 处理 blog 路由
-        const blogData = handleBlogRouter(req,res);
+        // const blogData = handleBlogRouter(req,res);
+        // if(blogData){
+            //     res.end(JSON.stringify(blogData))
+        // }
+        const blogResult = handleBlogRouter(req,res);
+        if(blogResult){
+            blogResult.then(blogData=>{
+                    res.end(JSON.stringify(blogData))
+            })
+            return;
+        }
+
         // 处理 user 路由
         const userData = handleUserRouter(req,res);
-        if(blogData){
-            res.end(JSON.stringify(blogData))
-        }
         if(userData){    
             res.end(JSON.stringify(userData))
         }
 
-        // 404
-        if(!userData && !blogData){
+        // 404 
+        if(!userData && !blogResult){
             res.writeHeader(404,{'Context-type':'text/plain'})
             res.write('404 Not Found\n')
             res.end();
