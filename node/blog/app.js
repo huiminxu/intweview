@@ -4,7 +4,7 @@ const handleUserRouter = require('./src/router/user')
 const getPostData =(req,res)=>{
     let postData=''
     const promise = new Promise((resolve,reject)=>{
-        if(req.method==='POST'){
+        if(req.method==='POST' || req.method==='PUT'){
             req.on('data',chunk=>{
                 postData+=chunk.toString()
             })

@@ -46,10 +46,36 @@ const newBlog =(blogData={})=>{
 
 //    }
 }
+const updateBlog =(id,blogData={})=>{
+    const { title,content} = blogData;
+    const sql =`update blog set title='${title}',content='${content}' where id=${id}`
+    return exec(sql).then(data=>{
+        // return true;
+        if(data.affectedRows>0){
+            return true;
+        }else{
+            return false;
+
+        }
+    })
+}
+const delblog = (id)=>{
+     const sql = `delete from blog where id=${id}`
+     return exec(sql).then(data=>{
+        if(data.affectedRows>0){
+            return true;
+        }else{
+            return false;
+
+        }
+     })
+}
 module.exports ={
     getList,
     newBlog,
-    getBlogDetail
+    getBlogDetail,
+    updateBlog,
+    delblog
     // getBlogDetail
 }
 
