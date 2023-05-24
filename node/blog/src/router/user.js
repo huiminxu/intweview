@@ -1,5 +1,6 @@
 const { SuccessModel,ErrorModel } = require('../model/resModel');
 const loginCheck  = require('../controller/user')
+const { set} = require('../db/redis')
 const handleUserRouter = (req,res) =>{
     const method = req.method;
     const url = req.url;
@@ -9,14 +10,45 @@ const handleUserRouter = (req,res) =>{
     if(method ==='POST' && path==='/api/user/login'){
         console.log('userrouter',req.body);
          const { username,password} = req.body;
-         const res = loginCheck(username,password);
-         if(res){
-             return new SuccessModel();
-         }else{
+        //  const res = loginCheck(username,password);
+        //  if(res){
+        //      return new SuccessModel();
+        //  }else{
 
-            return new ErrorModel('错误');
-         }
+        //     return new ErrorModel('错误'); 
+        //  }
+        const res = loginCheck(username,password);
+        return  res.then(data=>{
+            if(data.username){
+                // 设置 session
+                req.session.username = data.username;
+                req.session.realname = data.realname;
+                //同步到 redis
+                set(req.sessionId,req.session)
+                return new SuccessModel();
+            }else{
+                return new ErrorModel('登录失败 ');
+            }
+        })
+        //  if(res){
+        //      return new SuccessModel();
+        //  }else{
 
+        //     return new ErrorModel('错误'); 
+        //  }
+
+
+    }
+    //登录验证的测试
+    if(method==='GET' && path==='/api/user/login-test'){
+        if(req.session.username){
+            return Promise.resolve(new SuccessModel({
+                session:req.session
+            })) 
+        }
+        return Promise.resolve(
+            new ErrorModel('尚未登录')
+        )
     }
     // 获取用户列表接口
     if(method==='GET' && path==='/api/user/list'){
