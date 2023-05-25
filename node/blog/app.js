@@ -1,6 +1,7 @@
 const querystring = require('querystring');
 const handleBlogRouter = require('./src/router/blog')
 const handleUserRouter = require('./src/router/user')
+const { access} = require('./src/utils/log');
 const getPostData =(req,res)=>{
     let postData=''
     const promise = new Promise((resolve,reject)=>{
@@ -23,6 +24,9 @@ const getPostData =(req,res)=>{
 }
 const SESSION_DATA ={}
 const serverHandle = (req,res)=>{
+    // access 日志
+    access(`access`)
+
     // 设置返回格式 JSON
     res.setHeader('Content-type','application/json');
     // 解析query

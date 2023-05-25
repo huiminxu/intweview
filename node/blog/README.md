@@ -104,6 +104,37 @@ server{
  nginx -s
 
 
+ # 日志
+ 访问日志 access log （请求时间、请求方式、user agent、浏览器、请求地址）
+ 自定义日志 （自定义事件、错误记录）
+
+nodejs 文件操作 nodejs stream
+
+日志文件拆分，日志内容分析
+
+## 日志拆分
+日志拆分：按照时间日期拆分： eg: 2019-02-10.access.log
+crontab 命令，即定时任务 ***** command
+crontab 
+    * 0 * * * sh /Users/xuhuimin/workspace/handover/node/blog/src/utils/copy.sh
+    每天凌晨执行一下这个文件
+
+    crontab -e 编辑
+    crontab -l 查看当前定制任务
+
+## 分析日志
+nodejs readline  进行分析
 
 
 
+# 安全
+
+sql 注入： 窃取数据库内容
+    mysql  escape 解决
+xss 攻击： 窃取前端的 cookie 内容
+    转符号 >
+
+    npm i xss 解决
+    xss(blog.title); 解决
+密码加密：保障用户信息安全（重要！ ）
+    nodejs crypto 库
