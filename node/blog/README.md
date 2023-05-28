@@ -138,3 +138,8 @@ xss 攻击： 窃取前端的 cookie 内容
     xss(blog.title); 解决
 密码加密：保障用户信息安全（重要！ ）
     nodejs crypto 库
+
+
+# express
+简化登录： express-session & connect-redis
+日志： morgan
