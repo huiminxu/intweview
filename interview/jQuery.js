@@ -41,7 +41,9 @@ JQuery.prototype.dialog= function(info){
     alert(info)
 }
 
-// 扩展性
+// 扩展性 '造轮子'
 class MyJquery extends JQuery{
-    
+    constructor(selector){
+        super(selector)
+    }
 }
