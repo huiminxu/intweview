@@ -1,3 +1,4 @@
+console.log(a);   //undefined
 var a = 3;
 var b = function () {
 	console.log(a);  //undefined
